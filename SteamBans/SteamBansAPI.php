@@ -3,7 +3,7 @@
  * Класс для работы с API SteamBans
  * @author Jon4ik for Mysteam.ru
  * @url https://mysteam.ru/help/api/
- * @version 1.4
+ * @version 1.4.1
  */
 class SteamBansAPI 
 {
@@ -73,7 +73,9 @@ class SteamBansAPI
 		if($curl = curl_init())
 		{	
 			 curl_setopt($curl, CURLOPT_URL, "{$this->url}&st={$steamid}");
-			 curl_setopt($curl, CURLOPT_RETURNTRANSFER,true);		 
+			 curl_setopt($curl, CURLOPT_RETURNTRANSFER,	true);
+			 curl_setopt($curl, CURLOPT_NOSIGNAL, 1); 
+			 curl_setopt($curl, CURLOPT_TIMEOUT_MS, 200);		 
 			 $this->info = curl_exec($curl);
 			 		 
 			 if (curl_errno($curl) || curl_getinfo($curl, CURLINFO_HTTP_CODE) != 200) 
